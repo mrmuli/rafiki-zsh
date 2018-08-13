@@ -21,3 +21,7 @@ esac
 done
 echo "GOOD = ${GOOD}"
 echo "BAD = ${BAD}"
+
+good[${GOOD}]=goodemoji
+
+bad[${BAD}]=bademoji
