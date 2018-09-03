@@ -3,6 +3,10 @@
 declare -A good
 declare -A bad
 
+# get values from options
+# which are either -g={value} or --good={value}
+# and -b={value} or --bad={value}
+# can take multiple but only handling for 1 (for now at least)
 for i in "$@"
 do
 case $i in
@@ -15,13 +19,17 @@ case $i in
     shift
     ;;
     *)
-        # unknown option
+
     ;;
 esac
 done
-echo "GOOD = ${GOOD}"
-echo "BAD = ${BAD}"
 
-good[${GOOD}]=goodemoji
+if [[ -n ${GOOD} ]]; then
+    echo "not empty" ${GOOD}
+    echo good[goodemoji]=${GOOD} >> emoda
+fi
 
-bad[${BAD}]=bademoji
+if [[ -n ${BAD} ]]; then
+    echo "not empty" ${BAD}
+    echo bad[bademoji]=${BAD} >> emoda
+fi
