@@ -25,19 +25,17 @@ esac
 done
 
 # check for input in arguments (Good or Bad values) 
-# if they are not empty add them to the list (good after [G] bad after [B])
+# if they are not empty add them to the arrays (good after [G] bad after [B])
 if [[ -n ${GOOD} ]]; then
-    echo "GOOD value not empty" ${GOOD}
     for val in $(grep [G] emoda); do
-        # echo good[goodemoji]=${GOOD} >> emoda
-        echo -e "good[goodemoji]=${GOOD}\n$(cat emoda)" > emoda
+        sed -i "s/\[G]/[G]\ngood[goodemoji]=${GOOD}/" emoda
+        echo "added ${GOOD} as a GOOD emoji" 
     done
 fi
 
 if [[ -n ${BAD} ]]; then
-    echo "BAD value not empty" ${BAD}
     for val in $(grep [B] emoda); do
-        #echo bad[bademoji]=${BAD} >> emoda
-        echo -e "bad[bademoji]=${BAD}\n$(cat emoda)" > emoda
+        sed -i "s/\[B]/[B]\nbad[bademoji]=${BAD}/" emoda
+        echo "added ${BAD} as a BAD emoji"
     done
 fi
